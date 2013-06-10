@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="default.css"  />
+
+	<title>Consumir Cafe</title>
+</h:head>
+<h:body>
+	<h:form method="post">
+		<h2>Cafetera Automatica</h2>
+	
+		<h:commandButton value="Ficha $ 10" action="#{consumirCafeForm.insertarMoneda(10.0)}" /> 
+		<h:commandButton value="Ficha $ 5" action="#{consumirCafeForm.insertarMoneda(5.0)}" /> 
+		<h:commandButton value="Ficha $ 1" action="#{consumirCafeForm.insertarMoneda(1.0)}" /> 
+		
+		<h2>
+			SaldoActual : 
+			<h:outputText value="#{consumirCafeForm.saldoActual}" >
+				<f:convertNumber groupingUsed="true" maxFractionDigits="2" />
+			</h:outputText>
+		</h2>
+
+		<h:dataTable value="#{consumirCafeForm.productosDisponibles}" var="o" styleClass="abm" >
+			<h:column>
+				<f:facet name="header">Id</f:facet>
+				#{o.id}
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>
+				#{o.nombre}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Precio</f:facet>
+				#{o.precio}
+			</h:column>
+						
+			<h:column>
+				 <h:commandButton value="Consumir" action="#{consumirCafeForm.consumirProducto(o.id)}" rendered="#{o.disponible}"/> 
+			 </h:column>
+		</h:dataTable>
+		<h:messages />
+		<h:commandButton value="Volver a Indice" action="/index.xhtml" immediate="true" />
+		
+        <br />         
+	</h:form>
+</h:body>
+</html>

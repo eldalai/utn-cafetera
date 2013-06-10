@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="default.css"  />
+
+	<title>Productos</title>
+</h:head>
+<h:body>
+	<h:form method="post">
+		<h2>Productos</h2>
+	
+		<h:dataTable value="#{productoForm.productos}" var="o" styleClass="abm" >
+			<h:column>
+				<f:facet name="header">Id</f:facet>
+				#{o.id}
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>
+				#{o.nombre}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Precio</f:facet>
+				#{o.precio}
+			</h:column>			
+	
+
+			<h:column>
+				 <h:outputText value=" " /> 
+				 <h:commandButton value="Editar" action="productoEditar" > 
+				 	<f:param name="id" value="#{o.id}"></f:param>
+				 </h:commandButton> 
+			 </h:column>
+		</h:dataTable>
+
+		<h:commandButton value="Nuevo Producto"  action="productoNuevo" />
+		<h:commandButton value="Volver a Indice" action="/index.xhtml" immediate="true" />
+		
+        <br />         
+	</h:form>
+</h:body>
+</html>

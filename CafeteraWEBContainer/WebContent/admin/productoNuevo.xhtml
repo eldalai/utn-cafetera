@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="default.css" />
+
+	<title>Agregar Producto</title>
+</h:head>
+<h:body>
+
+	<h:form method="post" id='form'>
+		<h2>Agregar Producto</h2>
+		<h:panelGrid columns="3">
+			<h:outputText value="Id" />
+			<h:outputText value="#{productoNuevoForm.producto.id}" />
+			<h:message for="id" />
+
+			<h:outputText value="Nombre" />
+			<h:inputText id="nombre" value="#{productoNuevoForm.producto.nombre}" />
+			<h:message for="nombre" />
+
+			<h:outputText value="Precio" />
+			<h:inputText id="precio" value="#{productoNuevoForm.producto.precio}">
+				<f:convertNumber groupingUsed="true" maxFractionDigits="2" />
+			</h:inputText>
+			<h:message for="precio" />
+		</h:panelGrid>
+
+		<h:panelGrid columns="2">
+			<h:commandButton value="Guardar" action="#{productoNuevoForm.save}" />
+			<h:commandButton value="Volver" action="producto.xhtml"
+				immediate="true" />
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>
