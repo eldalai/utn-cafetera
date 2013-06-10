@@ -1,13 +1,12 @@
 package com.api.resources;
 
-import java.net.URI;
 
 public class RecursoDTO {
 
 	private String name;
-	private URI uri;
+	private String uri;
 
-	public RecursoDTO(String name, URI uri) {
+	public RecursoDTO(String name, String uri) {
 		this.setName(name);
 		this.setUri(uri);
 	}
@@ -20,11 +19,11 @@ public class RecursoDTO {
 		this.name = name;
 	}
 
-	public URI getUri() {
+	public String getUri() {
 		return uri;
 	}
 
-	public void setUri(URI uri) {
+	public void setUri(String uri) {
 		this.uri = uri;
 	}
 	

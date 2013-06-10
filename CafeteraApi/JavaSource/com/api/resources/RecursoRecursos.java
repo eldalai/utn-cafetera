@@ -29,19 +29,19 @@ public class RecursoRecursos {
 		listAll.add( new RecursoDTO( "usuarios", resolveResourceUrl( RecursoUsuarios.class ) ) );
 		listAll.add( new RecursoDTO( "materiasprimas", resolveResourceUrl( RecursoMateriasPrimas.class ) ) );
 		listAll.add( new RecursoDTO( "productos", resolveResourceUrl( RecursoProductos.class ) ) );
-//		listAll.add( new RecursoDTO( "productosMateriasPrimas", resolveResourceUrl( RecursoProductos.ProductoMateriaPrima.class ).resolve( "/productoId/materiasprimas" ) ) );
+		listAll.add(new RecursoDTO("productosMateriasPrimas", resolveResourceUrl(RecursoProductos.class) + "/{productoId}/materiasprimas"));
 		listAll.add( new RecursoDTO( "cafes", resolveResourceUrl( RecursoCafes.class ) ) );
 		return Response.ok(listAll).build();
 	}
 
-	private URI resolveResourceUrl(Class<?> resourceClass) {
+	private String resolveResourceUrl(Class<?> resourceClass) {
 		UriBuilder path = UriBuilder.fromResource(resourceClass);
 		return resolvePathUrl(path.build());
 	}
-	private URI resolvePathUrl(URI path) {
+	private String resolvePathUrl(URI path) {
 		URI baseUri = ResteasyProviderFactory.getContextData(HttpRequest.class).getUri().getBaseUri();
 		URI resolve = baseUri.resolve(path);
-		return resolve;
+		return resolve.toString();
 	}
 	
 }
